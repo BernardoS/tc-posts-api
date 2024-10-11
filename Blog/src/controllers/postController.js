@@ -27,7 +27,6 @@ exports.deletePost = async (req, res) => {
 };
 
 exports.searchPosts = async (req, res) => {
-    const keyword = req.query.q;
-    const posts = await Post.find({ $or: [{ title: new RegExp(keyword, 'i') }, { content: new RegExp(keyword, 'i') }] });
+    const posts = await Post.find({ title: new RegExp(req.query.q, 'i') });
     res.json(posts);
 };
