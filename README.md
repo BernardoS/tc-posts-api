@@ -12,7 +12,7 @@ Esta aplicação foi desenvolvida visando cumprir os requisitos estabelecidos pe
 
 A API seguiu o padrão *Model View Controller* ou *MVC*, que organiza a aplicação em três componentes principais: Model, que lida com a lógica de dados e interação com o banco de dados; View, que em nossa API REST, serão as respostas JSON; e Controller, que processa as requisições HTTP, coordena a lógica entre o Model e a View, e retorna a resposta ao cliente. 
 
-![Diagrama da API](./assets/API.png)
+![Diagrama da API](./Blog/assets/API.png)
 
 A aplicação foi implementada em javascript utilizando o Node.Js. Visando facilitar e agilizar o desenvolvimento, foram utilizadas algumas bibliotecas disponíveis no npm, são elas: Express, mongoose e jest.
 
