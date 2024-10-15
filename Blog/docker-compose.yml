@@ -9,8 +9,11 @@ services:
       - PORT=3000
     volumes:
       - .:/app
+      - /app/node_modules
     depends_on:
       - mongo
+    restart: always
+
 
   mongo:
     image: mongo:4.4

@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "start-api": "node ./src/index.js"
   },
   "keywords": [],
   "author": "",

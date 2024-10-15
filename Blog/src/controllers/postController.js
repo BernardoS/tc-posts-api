@@ -27,6 +27,23 @@ exports.deletePost = async (req, res) => {
 };
 
 exports.searchPosts = async (req, res) => {
-    const posts = await Post.find({ title: new RegExp(req.query.q, 'i') });
-    res.json(posts);
+
+    const queryString = req.body.text;
+
+    if(queryString != null && queryString != undefined && queryString != ""){
+
+        const posts = await Post.find({
+            $or: [
+                { title: new RegExp(queryString, 'i') },
+                { description: new RegExp(queryString, 'i') },
+                { content: new RegExp(queryString, 'i') }
+            ]
+        });
+
+        res.json(posts);
+
+    }else{
+        res.status(404).send('String de busca vazia! favor digitar o texto.');
+    }
+   
 };
