@@ -69,12 +69,23 @@ Estrutura dos Endpoints
 ```sh
 GET /posts: Retorna todos os posts
 GET /posts/{id}: Retorna um post pelo ID
+GET /admin/posts/search: Busca posts por título
 ```
 
 #### 2. Rotas de Administração
 ```sh
+GET /admin/posts: Retorna todos os posts para o admin
 POST /admin/posts: Cria um novo post
 PUT /admin/posts/{id}: Atualiza um post existente
 DELETE /admin/posts/{id}: Deleta um post
-GET /admin/posts/search: Busca posts por título
 ```
+
+## Desafios Encontrados
+
+### Integração de Tecnologias
+
+A migração da plataforma OutSystems para Node.js foi um dos maiores desafios. Isso exigiu a recriação do backend e a introdução de uma nova camada de persistência de dados com MongoDB. Apesar de a transição ter sido relativamente tranquila, foi necessário um esforço considerável para a adaptação às novas ferramentas e fluxos de trabalho.
+
+### Trabalho em equipe
+
+A coordenação entre os membros do time foi outro ponto crítico. Definir responsabilidades claras e gerenciar o tempo de forma eficiente foram desafios significativos. A prática de versionamento via Git foi fundamental para organizar o código, enquanto o uso do Trello permitiu uma divisão clara das atividades e o acompanhamento do progresso de cada tarefa. Isso garantiu que todos tivessem visibilidade do estado do projeto e facilitou a colaboração entre os membros afim de alcançar o objetivo final do projeto. 

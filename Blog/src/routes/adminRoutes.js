@@ -76,7 +76,7 @@ router.put('/:id', postController.updatePost);
 
 /**
  * @swagger
- * /admin/posts:
+ * /admin/posts/admin:
  *   get:
  *     summary: Retorna todos os posts
  *     tags: [Admin]
@@ -90,7 +90,7 @@ router.put('/:id', postController.updatePost);
  *               items:
  *                 $ref: '#/components/schemas/Post'
  */
-router.get('/', postController.getAllPosts);
+router.get('/admin', postController.getAllPosts);
 
 /**
  * @swagger
@@ -118,29 +118,5 @@ router.get('/', postController.getAllPosts);
  */
 router.delete('/:id', postController.deletePost);
 
-/**
- * @swagger
- * /admin/posts/search:
- *   get:
- *     summary: Busca posts por título
- *     tags: [Admin]
- *     parameters:
- *       - in: query
- *         name: q
- *         schema:
- *           type: string
- *         required: true
- *         description: Termo de busca
- *     responses:
- *       200:
- *         description: Lista de posts encontrados
- *         content:
- *           application/json:
- *             schema:
- *               type: array
- *               items:
- *                 $ref: '#/components/schemas/Post'
- */
-router.get('/search', postController.searchPosts);
 
 module.exports = router;

@@ -27,6 +27,30 @@ const postController = require('../controllers/postController');
  */
 router.get('/', postController.getAllPosts);
 
+
+/**
+ * @swagger
+ * /posts/search:
+ *   get:
+ *     summary: Retorna um post pelo ID
+ *     tags: [Public]
+ *     parameters:
+ *       - in: body
+ *         name: text
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: texto de busca
+ *     responses:
+ *       200:
+ *         description: Post encontrado
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Post'
+ */
+router.get('/search', postController.searchPosts);
+
 /**
  * @swagger
  * /posts/{id}:
@@ -49,5 +73,6 @@ router.get('/', postController.getAllPosts);
  *               $ref: '#/components/schemas/Post'
  */
 router.get('/:id', postController.getPostById);
+
 
 module.exports = router;
