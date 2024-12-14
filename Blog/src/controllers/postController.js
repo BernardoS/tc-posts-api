@@ -28,7 +28,7 @@ exports.deletePost = async (req, res) => {
 
 exports.searchPosts = async (req, res) => {
 
-    const queryString = req.body.text;
+    const queryString = req.query.q;
 
     if(queryString != null && queryString != undefined && queryString != ""){
 
