@@ -27,6 +27,29 @@ API para gerenciamento de posts de blog.
 
 O projeto está configurado para usar o MongoDB. Certifique-se de que o MongoDB está em execução e acessível na URL configurada em `src/config/db.js`.
 
+## Configuração do Ambiente
+
+Antes de executar o projeto, é necessário configurar o arquivo `.env` com as credenciais do Firebase. Crie um arquivo `.env` na raiz do diretório `Blog` e adicione as seguintes variáveis:
+```sh
+FIREBASE_PROJECT_ID=your-project-id
+
+FIREBASE_PRIVATE_KEY_ID=your-private-key-id
+
+FIREBASE_PRIVATE_KEY=your-private-key
+
+FIREBASE_CLIENT_EMAIL=your-client-email
+
+FIREBASE_CLIENT_ID=your-client-id
+
+FIREBASE_AUTH_URI=https://accounts.google.com/o/oauth2/auth
+
+FIREBASE_TOKEN_URI=https://oauth2.googleapis.com/token
+
+FIREBASE_AUTH_PROVIDER_X509_CERT_URL=https://www.googleapis.com/oauth2/v1/certs
+
+FIREBASE_CLIENT_X509_CERT_URL=https://www.googleapis.com/robot/v1/metadata/x509/your-client-email
+```
+
 ## Executando o Projeto
 
 ### Usando Docker
