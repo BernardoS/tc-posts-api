@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const postController = require('../controllers/postController');
+const { authenticate } = require('../middleware/auth');
 
 /**
  * @swagger
@@ -36,7 +37,7 @@ const postController = require('../controllers/postController');
  *             schema:
  *               $ref: '#/components/schemas/Post'
  */
-router.post('/', postController.createPost);
+router.post('/', authenticate, postController.createPost);
 
 /**
  * @swagger
@@ -72,7 +73,7 @@ router.post('/', postController.createPost);
  *             schema:
  *               $ref: '#/components/schemas/Post'
  */
-router.put('/:id', postController.updatePost);
+router.put('/:id', authenticate, postController.updatePost);
 
 /**
  * @swagger
@@ -90,7 +91,7 @@ router.put('/:id', postController.updatePost);
  *               items:
  *                 $ref: '#/components/schemas/Post'
  */
-router.get('/admin', postController.getAllPosts);
+router.get('/admin', authenticate, postController.getAllPosts);
 
 /**
  * @swagger
@@ -116,7 +117,29 @@ router.get('/admin', postController.getAllPosts);
  *                 message:
  *                   type: string
  */
-router.delete('/:id', postController.deletePost);
+router.delete('/:id', authenticate, postController.deletePost);
 
+/**
+ * @swagger
+ * /admin/posts/{id}:
+ *   get:
+ *     summary: Retorna um post pelo ID
+ *     tags: [Admin]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: ID do post
+ *     responses:
+ *       200:
+ *         description: Post encontrado
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Post'
+ */
+router.get('/:id', authenticate, postController.getPostById);
 
 module.exports = router;
