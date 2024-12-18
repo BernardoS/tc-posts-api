@@ -1,0 +1,17 @@
+{
+    "compilerOptions": {
+      "target": "ES6",
+      "module": "commonjs",
+      "strict": true,
+      "esModuleInterop": true,
+      "skipLibCheck": true,
+      "forceConsistentCasingInFileNames": true,
+      "outDir": "./dist",
+      "rootDir": "./src",
+      "typeRoots": ["./node_modules/@types", "./src/types"],
+      "resolveJsonModule": true,
+      "allowJs": true // Adicione esta linha
+    },
+    "include": ["src/**/*.ts", "src/**/*.js", "src/index.cjs"], // Adicione esta linha
+    "exclude": ["node_modules"]
+  }

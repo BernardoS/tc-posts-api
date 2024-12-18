@@ -10,10 +10,10 @@ services:
     volumes:
       - .:/app
       - /app/node_modules
+      - .env:/app/.env
     depends_on:
       - mongo
     restart: always
-
 
   mongo:
     image: mongo:4.4
