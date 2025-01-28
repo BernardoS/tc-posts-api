@@ -11,7 +11,7 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 app.use(cors({
-    origin: 'http://localhost:3001', // Permite apenas a origem do frontend
+    origin: true, // Permite apenas a origem do frontend
 }));
 app.use(bodyParser.json());
 app.use('/posts', publicRoutes);
