@@ -66,6 +66,17 @@ FIREBASE_TOKEN_URI=https://oauth2.googleapis.com/token
 FIREBASE_AUTH_PROVIDER_X509_CERT_URL=https://www.googleapis.com/oauth2/v1/certs
 
 FIREBASE_CLIENT_X509_CERT_URL=https://www.googleapis.com/robot/v1/metadata/x509/your-client-email
+
+FIREBASE_API_KEY=your_firebase_api_key
+
+FIREBASE_AUTH_DOMAIN=your_firebase_auth_domain
+
+FIREBASE_STORAGE_BUCKET=your_firebase_storage_bucket
+
+FIREBASE_MESSAGING_SENDER_ID=your_firebase_messaging_sender_id
+
+FIREBASE_APP_ID=your_firebase_app_id
+
 ```
 
 ### Executando o Projeto

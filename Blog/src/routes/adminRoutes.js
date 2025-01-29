@@ -6,13 +6,13 @@ const { authenticate } = require('../middleware/auth');
 /**
  * @swagger
  * tags:
- *   name: Admin
+ *   name: Private
  *   description: Rotas de administração e gerenciamento de posts
  */
 
 /**
  * @swagger
- * /admin/posts:
+ * /private/posts:
  *   post:
  *     summary: Cria um novo post
  *     tags: [Admin]
@@ -37,11 +37,11 @@ const { authenticate } = require('../middleware/auth');
  *             schema:
  *               $ref: '#/components/schemas/Post'
  */
-router.post('/', authenticate, postController.createPost);
+router.post('/posts', authenticate, postController.createPost);
 
 /**
  * @swagger
- * /admin/posts/{id}:
+ * /private/posts/{id}:
  *   put:
  *     summary: Atualiza um post existente
  *     tags: [Admin]
@@ -73,11 +73,11 @@ router.post('/', authenticate, postController.createPost);
  *             schema:
  *               $ref: '#/components/schemas/Post'
  */
-router.put('/:id', authenticate, postController.updatePost);
+router.put('/posts/:id', authenticate, postController.updatePost);
 
 /**
  * @swagger
- * /admin/posts/admin:
+ * /private/posts/:
  *   get:
  *     summary: Retorna todos os posts
  *     tags: [Admin]
@@ -91,11 +91,11 @@ router.put('/:id', authenticate, postController.updatePost);
  *               items:
  *                 $ref: '#/components/schemas/Post'
  */
-router.get('/admin', authenticate, postController.getAllPosts);
+router.get('/posts', authenticate, postController.getAllPosts);
 
 /**
  * @swagger
- * /admin/posts/{id}:
+ * /private/posts/{id}:
  *   delete:
  *     summary: Deleta um post
  *     tags: [Admin]
@@ -117,7 +117,7 @@ router.get('/admin', authenticate, postController.getAllPosts);
  *                 message:
  *                   type: string
  */
-router.delete('/:id', authenticate, postController.deletePost);
+router.delete('/posts/:id', authenticate, postController.deletePost);
 
 /**
  * @swagger
@@ -140,6 +140,6 @@ router.delete('/:id', authenticate, postController.deletePost);
  *             schema:
  *               $ref: '#/components/schemas/Post'
  */
-router.get('/:id', authenticate, postController.getPostById);
+router.get('/post/:id', authenticate, postController.getPostById);
 
 module.exports = router;

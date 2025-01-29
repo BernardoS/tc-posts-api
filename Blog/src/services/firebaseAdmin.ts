@@ -1,7 +1,25 @@
-const dotenv = require('dotenv');
 const admin = require('firebase-admin');
+const fs = require('fs');
+const path = require('path');
+const { getAuth } = require("firebase-admin/auth");
 
-dotenv.config();
+
+
+const loadEnv = () => {
+  const envPath = path.resolve(__dirname, '../../.env');
+  const envData = fs.readFileSync(envPath, 'utf8');
+  const envVariables = envData.split('\n');
+
+  envVariables.forEach((variable: string) => {
+    const [key, ...valueParts] = variable.split('=');
+    const value = valueParts.join('=').trim(); // Caso o valor tenha '=' no meio
+    if (key && value) {
+      process.env[key.trim()] = value.replace(/\\n/g, '\n'); // Converte \n literal para quebra real
+    }
+  });
+};
+
+loadEnv();
 
 const serviceAccount = {
   type: process.env.FIREBASE_CREDENTIAL_TYPE,
@@ -17,6 +35,12 @@ const serviceAccount = {
   universe_domain: process.env.FIREBASE_UNIVERSE_DOMAIN
 };
 
-admin.initializeApp({
+const adminApp = admin.initializeApp({
   credential: admin.credential.cert(serviceAccount)
 });
+
+const auth = getAuth(adminApp);
+
+exports.auth = auth;
+
+exports.admin = adminApp;

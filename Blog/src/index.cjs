@@ -14,8 +14,8 @@ app.use(cors({
     origin: true, // Permite apenas a origem do frontend
 }));
 app.use(bodyParser.json());
-app.use('/posts', publicRoutes);
-app.use('/admin/posts', authenticate, adminRoutes);
+app.use('/public', publicRoutes);
+app.use('/private', authenticate, adminRoutes);
 
 swaggerConfig(app);
 

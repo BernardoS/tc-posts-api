@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const postController = require('../controllers/postController');
+const userController = require('../controllers/userController');
 
 /**
  * @swagger
@@ -25,7 +26,7 @@ const postController = require('../controllers/postController');
  *               items:
  *                 $ref: '#/components/schemas/Post'
  */
-router.get('/', postController.getAllPosts);
+router.get('/posts', postController.getAllPosts);
 
 
 /**
@@ -49,7 +50,7 @@ router.get('/', postController.getAllPosts);
  *             schema:
  *               $ref: '#/components/schemas/Post'
  */
-router.get('/search', postController.searchPosts);
+router.get('/posts/search', postController.searchPosts);
 
 /**
  * @swagger
@@ -72,7 +73,19 @@ router.get('/search', postController.searchPosts);
  *             schema:
  *               $ref: '#/components/schemas/Post'
  */
-router.get('/:id', postController.getPostById);
+router.get('/posts/:id', postController.getPostById);
+
+router.get('/user/', userController.getAllUsers);
+
+router.get('/user/professor', userController.getAllProfessors);
+
+router.get('/user/students', userController.getAllStudents);
+
+router.post('/user', userController.createUser);
+
+router.delete('/user/:id', userController.deleteUser);
+
+router.delete('/user/mongo/:id', userController.deleteUserFromDb);
 
 
 module.exports = router;
