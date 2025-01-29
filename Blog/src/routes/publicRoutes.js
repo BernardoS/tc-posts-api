@@ -75,17 +75,5 @@ router.get('/posts/search', postController.searchPosts);
  */
 router.get('/posts/:id', postController.getPostById);
 
-router.get('/user/', userController.getAllUsers);
-
-router.get('/user/professor', userController.getAllProfessors);
-
-router.get('/user/students', userController.getAllStudents);
-
-router.post('/user', userController.createUser);
-
-router.delete('/user/:id', userController.deleteUser);
-
-router.delete('/user/mongo/:id', userController.deleteUserFromDb);
-
 
 module.exports = router;

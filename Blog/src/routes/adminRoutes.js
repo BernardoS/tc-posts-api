@@ -121,7 +121,7 @@ router.delete('/posts/:id', authenticate, postController.deletePost);
 
 /**
  * @swagger
- * /admin/posts/{id}:
+ * /private/posts/{id}:
  *   get:
  *     summary: Retorna um post pelo ID
  *     tags: [Admin]
@@ -141,5 +141,102 @@ router.delete('/posts/:id', authenticate, postController.deletePost);
  *               $ref: '#/components/schemas/Post'
  */
 router.get('/post/:id', authenticate, postController.getPostById);
+
+
+/**
+ * @swagger
+ * /private/user/professors:
+ *   get:
+ *     summary: Retorna todos os professores
+ *     tags: [Admin]
+ *     responses:
+ *       200:
+ *         description: Lista de professores
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/User'
+ */
+router.get('/user/professors', userController.getAllProfessors);
+
+/**
+ * @swagger
+ * /private/user/students:
+ *   get:
+ *     summary: Retorna todos os estudantes
+ *     tags: [Admin]
+ *     responses:
+ *       200:
+ *         description: Lista de estudantes
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/User'
+ */
+router.get('/user/students', userController.getAllStudents);
+
+/**
+ * @swagger
+ * /private/user:
+ *   post:
+ *     summary: Cria um novo usuário
+ *     tags: [Admin]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               email:
+ *                  type: string
+ *               name:
+ *                  type: string
+ *               permission:
+ *                  type: string
+ *     responses:
+ *       200:
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/User'
+ */
+router.post('/user', userController.createUser);
+
+/**
+ * @swagger
+ * /private/user/{id}:
+ *   delete:
+ *     summary: Deleta um usuário
+ *     tags: [Admin]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: ID do usuário
+ *     responses:
+ *       200:
+ *         description: Usuário deletado com sucesso
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ */
+router.delete('/user/:id', userController.deleteUser);
+
+//Rotas de teste
+
+router.delete('/user/mongo/:id', userController.deleteUserFromDb);
+
+router.get('/user/', userController.getAllUsers);
 
 module.exports = router;

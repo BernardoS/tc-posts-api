@@ -4,27 +4,30 @@ const { getAuth, createUserWithEmailAndPassword } = require("firebase/auth");
 const { auth } = require("../services/firebaseAdmin");
 
 exports.getAllUsers = async (req, res) => {
+  console.log("[getAllUsers] iniciando...");
   const users = await User.find();
+  console.log("[getAllUsers] finalizando.");
   res.json(users);
 };
 
 exports.getAllProfessors = async (req, res) => {
+  console.log("[getAllProfessors] iniciando...");
   const professors = await User.find({ permission: "professor" });
+  console.log("[getAllProfessors] finalizando.");
   res.json(professors);
 };
 
 exports.getAllStudents = async (req, res) => {
+  console.log("[getAllStudents] iniciando...");
   const students = await User.find({ permission: "student" });
+  console.log("[getAllStudents] finalizando.");
   res.json(students);
 };
 
 exports.getUserById = async (req, res) => {
+  console.log("[getUserById] iniciando...");
   const user = await User.findById(req.params.id);
-  res.json(user);
-};
-
-exports.getUserByEmail = async (req, res) => {
-  const user = await User.findById(req.params.id);
+  console.log("[getUserById] finalizando.");
   res.json(user);
 };
 
