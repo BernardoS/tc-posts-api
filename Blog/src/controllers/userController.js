@@ -31,6 +31,14 @@ exports.getUserById = async (req, res) => {
   res.json(user);
 };
 
+exports.getUserByEmail = async (req, res) => {
+  console.log("[getUserByEmail] iniciando...");
+  const email = req.params.email;
+  const user = await User.find({email:email});
+  console.log("[getUserByEmail] finalizando.");
+  res.json(user);
+};
+
 exports.createUser = async (req, res) => {
   try {
     console.log("[createUser] iniciando...");

@@ -234,6 +234,52 @@ router.post('/user', authenticate ,userController.createUser);
  */
 router.delete('/user/:id', authenticate ,userController.deleteUser);
 
+/**
+ * @swagger
+ * /private/user/{id}:
+ *   get:
+ *     summary: Retorna um usuário pelo ID
+ *     tags: [Admin]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: ID do usuário
+ *     responses:
+ *       200:
+ *         description: Usuário encontrado
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/User'
+ */
+router.get('/user/:id', authenticate, userController.getUserById);
+
+/**
+ * @swagger
+ * /private/user/email/{email}}:
+ *   get:
+ *     summary: Retorna um usuário pelo email
+ *     tags: [Admin]
+ *     parameters:
+ *       - in: path
+ *         name: email
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: email do usuário
+ *     responses:
+ *       200:
+ *         description: Usuário encontrado
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/User'
+ */
+router.get('/post/email/:email', authenticate, userController.getUserByEmail);
+
 //Rotas de teste
 
 router.delete('/user/mongo/:id', userController.deleteUserFromDb);
