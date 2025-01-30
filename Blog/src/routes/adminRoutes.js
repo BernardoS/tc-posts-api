@@ -280,6 +280,41 @@ router.get('/user/:id', authenticate, userController.getUserById);
  */
 router.get('/post/email/:email', authenticate, userController.getUserByEmail);
 
+
+/**
+ * @swagger
+ * /private/user/{id}:
+ *   put:
+ *     summary: Atualiza um usuário existente
+ *     tags: [Admin]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: ID do usuário
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *               permission:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: Usuário atualizado com sucesso
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/User'
+ */
+router.put('/user/:id', authenticate, userController.updateUser);
+
 //Rotas de teste
 
 router.delete('/user/mongo/:id', userController.deleteUserFromDb);

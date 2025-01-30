@@ -39,6 +39,32 @@ exports.getUserByEmail = async (req, res) => {
   res.json(user);
 };
 
+exports.updateUser = async (req, res) => {
+    console.log("[updateUser] iniciando...");
+
+    console.log(req.body);
+
+    const { name, permission, ...rest }  = req.body;
+    
+    const infoToUpdate = {};
+
+    if (name) infoToUpdate.name = name;
+
+    if (permission) infoToUpdate.permission = permission;
+
+    if(infoToUpdate == {}){
+      return res.status(417).json({ message: "As informaões não foram enviadas corretamente" })
+    }
+
+    console.log(infoToUpdate);
+
+    const updatedUser = await User.findByIdAndUpdate(req.params.id, infoToUpdate , { new: true });
+
+    console.log("[updateUser] finalizando.");
+
+    res.json(updatedUser);
+};
+
 exports.createUser = async (req, res) => {
   try {
     console.log("[createUser] iniciando...");
@@ -66,13 +92,6 @@ exports.createUser = async (req, res) => {
     console.error("[createUser] erro:", error);
     res.status(417).json({ code: error.code, message: error.message });
   }
-};
-
-exports.updateUser = async (req, res) => {
-  const updatedUser = await User.findByIdAndUpdate(req.params.id, req.body, {
-    new: true,
-  });
-  res.json(updatedUser);
 };
 
 exports.deleteUserFromDb = async (req, res) => {
