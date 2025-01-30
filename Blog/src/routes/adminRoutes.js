@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const postController = require('../controllers/postController');
+const userController = require('../controllers/userController');
 const { authenticate } = require('../middleware/auth');
 
 /**
@@ -159,7 +160,7 @@ router.get('/post/:id', authenticate, postController.getPostById);
  *               items:
  *                 $ref: '#/components/schemas/User'
  */
-router.get('/user/professors', userController.getAllProfessors);
+router.get('/user/professors', authenticate, userController.getAllProfessors);
 
 /**
  * @swagger
@@ -177,7 +178,7 @@ router.get('/user/professors', userController.getAllProfessors);
  *               items:
  *                 $ref: '#/components/schemas/User'
  */
-router.get('/user/students', userController.getAllStudents);
+router.get('/user/students', authenticate, userController.getAllStudents);
 
 /**
  * @swagger
@@ -205,7 +206,7 @@ router.get('/user/students', userController.getAllStudents);
  *             schema:
  *               $ref: '#/components/schemas/User'
  */
-router.post('/user', userController.createUser);
+router.post('/user', authenticate ,userController.createUser);
 
 /**
  * @swagger
@@ -231,7 +232,7 @@ router.post('/user', userController.createUser);
  *                 message:
  *                   type: string
  */
-router.delete('/user/:id', userController.deleteUser);
+router.delete('/user/:id', authenticate ,userController.deleteUser);
 
 //Rotas de teste
 
