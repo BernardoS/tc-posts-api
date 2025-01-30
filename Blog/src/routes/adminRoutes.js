@@ -1,18 +1,19 @@
 const express = require('express');
 const router = express.Router();
 const postController = require('../controllers/postController');
+const userController = require('../controllers/userController');
 const { authenticate } = require('../middleware/auth');
 
 /**
  * @swagger
  * tags:
- *   name: Admin
+ *   name: Private
  *   description: Rotas de administração e gerenciamento de posts
  */
 
 /**
  * @swagger
- * /admin/posts:
+ * /private/posts:
  *   post:
  *     summary: Cria um novo post
  *     tags: [Admin]
@@ -37,11 +38,11 @@ const { authenticate } = require('../middleware/auth');
  *             schema:
  *               $ref: '#/components/schemas/Post'
  */
-router.post('/', authenticate, postController.createPost);
+router.post('/posts', authenticate, postController.createPost);
 
 /**
  * @swagger
- * /admin/posts/{id}:
+ * /private/posts/{id}:
  *   put:
  *     summary: Atualiza um post existente
  *     tags: [Admin]
@@ -73,11 +74,11 @@ router.post('/', authenticate, postController.createPost);
  *             schema:
  *               $ref: '#/components/schemas/Post'
  */
-router.put('/:id', authenticate, postController.updatePost);
+router.put('/posts/:id', authenticate, postController.updatePost);
 
 /**
  * @swagger
- * /admin/posts/admin:
+ * /private/posts/:
  *   get:
  *     summary: Retorna todos os posts
  *     tags: [Admin]
@@ -91,11 +92,11 @@ router.put('/:id', authenticate, postController.updatePost);
  *               items:
  *                 $ref: '#/components/schemas/Post'
  */
-router.get('/admin', authenticate, postController.getAllPosts);
+router.get('/posts', authenticate, postController.getAllPosts);
 
 /**
  * @swagger
- * /admin/posts/{id}:
+ * /private/posts/{id}:
  *   delete:
  *     summary: Deleta um post
  *     tags: [Admin]
@@ -117,11 +118,11 @@ router.get('/admin', authenticate, postController.getAllPosts);
  *                 message:
  *                   type: string
  */
-router.delete('/:id', authenticate, postController.deletePost);
+router.delete('/posts/:id', authenticate, postController.deletePost);
 
 /**
  * @swagger
- * /admin/posts/{id}:
+ * /private/posts/{id}:
  *   get:
  *     summary: Retorna um post pelo ID
  *     tags: [Admin]
@@ -140,6 +141,184 @@ router.delete('/:id', authenticate, postController.deletePost);
  *             schema:
  *               $ref: '#/components/schemas/Post'
  */
-router.get('/:id', authenticate, postController.getPostById);
+router.get('/post/:id', authenticate, postController.getPostById);
+
+
+/**
+ * @swagger
+ * /private/user/professors:
+ *   get:
+ *     summary: Retorna todos os professores
+ *     tags: [Admin]
+ *     responses:
+ *       200:
+ *         description: Lista de professores
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/User'
+ */
+router.get('/user/professors', authenticate, userController.getAllProfessors);
+
+/**
+ * @swagger
+ * /private/user/students:
+ *   get:
+ *     summary: Retorna todos os estudantes
+ *     tags: [Admin]
+ *     responses:
+ *       200:
+ *         description: Lista de estudantes
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/User'
+ */
+router.get('/user/students', authenticate, userController.getAllStudents);
+
+/**
+ * @swagger
+ * /private/user:
+ *   post:
+ *     summary: Cria um novo usuário
+ *     tags: [Admin]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               email:
+ *                  type: string
+ *               name:
+ *                  type: string
+ *               permission:
+ *                  type: string
+ *     responses:
+ *       200:
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/User'
+ */
+router.post('/user', authenticate ,userController.createUser);
+
+/**
+ * @swagger
+ * /private/user/{id}:
+ *   delete:
+ *     summary: Deleta um usuário
+ *     tags: [Admin]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: ID do usuário
+ *     responses:
+ *       200:
+ *         description: Usuário deletado com sucesso
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ */
+router.delete('/user/:id', authenticate ,userController.deleteUser);
+
+/**
+ * @swagger
+ * /private/user/{id}:
+ *   get:
+ *     summary: Retorna um usuário pelo ID
+ *     tags: [Admin]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: ID do usuário
+ *     responses:
+ *       200:
+ *         description: Usuário encontrado
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/User'
+ */
+router.get('/user/:id', authenticate, userController.getUserById);
+
+/**
+ * @swagger
+ * /private/user/email/{email}}:
+ *   get:
+ *     summary: Retorna um usuário pelo email
+ *     tags: [Admin]
+ *     parameters:
+ *       - in: path
+ *         name: email
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: email do usuário
+ *     responses:
+ *       200:
+ *         description: Usuário encontrado
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/User'
+ */
+router.get('/post/email/:email', authenticate, userController.getUserByEmail);
+
+
+/**
+ * @swagger
+ * /private/user/{id}:
+ *   put:
+ *     summary: Atualiza um usuário existente
+ *     tags: [Admin]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: ID do usuário
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *               permission:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: Usuário atualizado com sucesso
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/User'
+ */
+router.put('/user/:id', authenticate, userController.updateUser);
+
+//Rotas de teste
+
+router.delete('/user/mongo/:id', userController.deleteUserFromDb);
+
+router.get('/user/', userController.getAllUsers);
 
 module.exports = router;

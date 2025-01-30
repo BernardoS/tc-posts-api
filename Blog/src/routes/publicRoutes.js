@@ -25,7 +25,7 @@ const postController = require('../controllers/postController');
  *               items:
  *                 $ref: '#/components/schemas/Post'
  */
-router.get('/', postController.getAllPosts);
+router.get('/posts', postController.getAllPosts);
 
 
 /**
@@ -49,7 +49,7 @@ router.get('/', postController.getAllPosts);
  *             schema:
  *               $ref: '#/components/schemas/Post'
  */
-router.get('/search', postController.searchPosts);
+router.get('/posts/search', postController.searchPosts);
 
 /**
  * @swagger
@@ -72,7 +72,7 @@ router.get('/search', postController.searchPosts);
  *             schema:
  *               $ref: '#/components/schemas/Post'
  */
-router.get('/:id', postController.getPostById);
+router.get('/posts/:id', postController.getPostById);
 
 
 module.exports = router;

@@ -31,6 +31,8 @@ O projeto está configurado para usar o MongoDB. Certifique-se de que o MongoDB 
 
 Antes de executar o projeto, é necessário configurar o arquivo `.env` com as credenciais do Firebase. Crie um arquivo `.env` na raiz do diretório `Blog` e adicione as seguintes variáveis:
 ```sh
+FIREBASE_CREDENTIAL_TYPE=service_account
+
 FIREBASE_PROJECT_ID=your-project-id
 
 FIREBASE_PRIVATE_KEY_ID=your-private-key-id
@@ -48,6 +50,8 @@ FIREBASE_TOKEN_URI=https://oauth2.googleapis.com/token
 FIREBASE_AUTH_PROVIDER_X509_CERT_URL=https://www.googleapis.com/oauth2/v1/certs
 
 FIREBASE_CLIENT_X509_CERT_URL=https://www.googleapis.com/robot/v1/metadata/x509/your-client-email
+
+FIREBASE_UNIVERSE_DOMAIN=googleapis.com
 ```
 
 ## Executando o Projeto

@@ -1,4 +1,4 @@
-const admin = require('../services/firebaseAdmin');
+const {admin} = require('../services/firebaseAdmin');
 
 const authenticate = async (req, res, next) => {
   console.log("Admin object import:", admin);  // Verifique o que está sendo importado
