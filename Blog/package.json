@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
+    "docker:build":"docker-compose up --build -d",
     "start-api": "node ./src/index.js",
     "build": "tsc",
     "start": "node dist/index.js"
