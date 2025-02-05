@@ -278,7 +278,7 @@ router.get('/user/:id', authenticate, userController.getUserById);
  *             schema:
  *               $ref: '#/components/schemas/User'
  */
-router.get('/post/email/:email', authenticate, userController.getUserByEmail);
+router.get('/user/email/:email', authenticate, userController.getUserByEmail);
 
 
 /**
